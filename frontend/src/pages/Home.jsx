@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSection from "../sections/Home/HeroSection";
-import { BlogsTab, BlogsList } from "../sections/Home/BlogsTab";
+import { BlogsList } from "../sections/Home/BlogsTab";
 
 const Home = () => {
   return (
