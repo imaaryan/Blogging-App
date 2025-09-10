@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { blogCategories } from "../../assets/assets.js";
 
 export const BlogsTab = () => {
   return (
@@ -129,6 +130,32 @@ export const BlogsTab = () => {
             content visibility and styling.
           </p>
         </div>
+      </div>
+    </div>
+  );
+};
+
+export const BlogsList = () => {
+
+  const [menu, setMenu] = useState("All")
+
+  return (
+    <div className=" py-[40px] dark:bg-gray-900 ">
+      <div className="mb-4">
+        <ul className="flex flex-wrap justify-center -mb-px text-sm font-medium text-center">
+          {blogCategories.map((item) => (
+            <li className="me-2">
+              <button
+              onClick={()=>(setMenu(item))}
+                className={`inline-block px-4 py-2 rounded-lg hover:bg-gray-500 text-gray-300 dark:hover:text-gray-100 cursor-pointer ${menu === item && "bg-blue-700"} `}
+                type="button"
+                key={item}
+              >
+                {item}
+              </button>
+            </li>
+          ))};
+        </ul>
       </div>
     </div>
   );
