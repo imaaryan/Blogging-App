@@ -95,7 +95,7 @@ const Blogs = () => {
                         <p class="text-sm text-gray-600 dark:text-gray-400">
                           <time
                           >
-                            {Moment(item.createdAt).format("MMM, DD, YYYY")}
+                            {Moment(item.createdAt).fromNow()}
                           </time>
                         </p>
                       </div>
