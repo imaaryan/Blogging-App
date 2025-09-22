@@ -25,14 +25,14 @@ export const BlogsList = () => {
           ))}
         </ul>
       </div>
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4  gap-8 mb-24 mx-8 sm:mx-16 x1:mx-40"
-      >
-        {blog_data
-          .filter((Blog) => menu === "All" ? true : Blog.category === menu)
-          .map((Blog) => 
-            <Card key={Blog._id} Blog={Blog} />
-          )}
+      <div className="flex flex-col justify-center items-center ">
+        <div className="max-w-screen-xxl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4  gap-8 mb-24 mx-8 sm:mx-16 x1:mx-40">
+          {blog_data
+            .filter((Blog) => (menu === "All" ? true : Blog.category === menu))
+            .map((Blog) => (
+              <Card key={Blog._id} Blog={Blog} />
+            ))}
+        </div>
       </div>
     </div>
   );

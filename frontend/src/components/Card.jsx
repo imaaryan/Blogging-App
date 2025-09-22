@@ -14,13 +14,17 @@ const Card = ({ Blog }) => {
         <img className="rounded-t-lg" src={image} alt="" />
 
         <div className="p-5">
-          <h6 className="text-gray-400">{category}</h6>
-          <h5 className="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {title}
-          </h5>
+          <div>
+            <h6 className="text-gray-400">{category}</h6>
+            <h5 className="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {title}
+            </h5>
 
-          <p className="mb-6 font-normal text-gray-700 dark:text-gray-400" dangerouslySetInnerHTML={{"__html": description.slice(0, 70)}}>
-          </p>
+            <p
+              className="mb-6 font-normal text-gray-700 dark:text-gray-400"
+              dangerouslySetInnerHTML={{ __html: description.slice(0, 70) }}
+            ></p>
+          </div>
           <a
             onClick={() => navigate(`/blog/${_id}`)}
             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer "
