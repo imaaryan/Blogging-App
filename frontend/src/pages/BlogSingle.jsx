@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { assets, blog_data, comments_data } from "../assets/assets";
 import Moment from "moment";
+import Loader from "../components/Loader";
 
 const Blogs = () => {
   const { id } = useParams();
@@ -29,7 +30,7 @@ const Blogs = () => {
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
           <article class="mx-auto w-full max-w-6xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="mb-4 mt-16 lg:mb-6 not-format">
-              <div className="flex justify-self-center text-center font-semibold bg-blue-700 text-white rounded-2xl max-w-max px-8 ">
+              <div className="flex justify-self-center text-center text-[16px] font-semibold bg-blue-700 text-white rounded-2xl max-w-max px-8 ">
                 {" "}
                 Published on: {Moment(data.createdAt).format(
                   "MMMM Do YYYY"
@@ -112,7 +113,7 @@ const Blogs = () => {
       </main>
     </>
   ) : (
-    <div>Loading...</div>
+    <Loader/>
   );
 };
 
