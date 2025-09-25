@@ -1,37 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { dashboard_data } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
+import BlogTableItem from "../../components/admin/BlogTableItem";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-
-  const [openDropdownId, setOpenDropdownId] = useState(null);
-
-  const handleShow = (id) => {
-    const url = `/blog/${id}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
-  const handleEdit = (id) => {};
-
-  const handleDelete = (id) => {
-    // A confirmation is good practice before deleting
-    if (window.confirm("Are you sure you want to delete this blog?")) {
-    }
-  };
-
-  useEffect(() => {
-    const handleClickOutside = () => {
-      setOpenDropdownId(null);
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   const [dashboardData, setDashboardData] = useState({
     blogs: 0,
@@ -211,93 +184,9 @@ const AdminDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {dashboardData.recentBlogs.map((item, index) => (
-                    <tr
-                      key={item._id}
-                      className="border-b dark:border-gray-700"
-                    >
-                      <td className="px-4 py-3">{index + 1}</td>
-                      <th
-                        scope="row"
-                        className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        {item.title}
-                      </th>
-                      <td className="px-4 py-3">{item.category}</td>
-                      <td className="px-4 py-3">
-                        {moment(item.createdAt).format("Do MMMM YYYY")}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          item.isPublished ? "text-green-600" : "text-amber-500"
-                        }`}
-                      >
-                        {item.isPublished ? "Published" : "Draft"}
-                      </td>
-                      <td className="px-4 py-3 flex items-center justify-end relative">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setOpenDropdownId(
-                              openDropdownId === item._id ? null : item._id
-                            );
-                          }}
-                          className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                          type="button"
-                        >
-                          <svg
-                            className="w-5 h-5"
-                            aria-hidden="true"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                          </svg>
-                        </button>
-                        <div
-                          onClick={(e) => e.stopPropagation()}
-                          className={`absolute z-10 right-0 w-44 bg-gray-700 rounded divide-y divide-gray-600 shadow ${
-                            openDropdownId === item._id ? "" : "hidden"
-                          } ${
-                            index >= dashboardData.recentBlogs.length - 3
-                              ? "bottom-full mb-1"
-                              : "top-full mt-1"
-                          }`}
-                        >
-                          <ul
-                            className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="apple-imac-27-dropdown-button"
-                          >
-                            <li>
-                              <div
-                                onClick={() => handleShow(item._id)}
-                                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                              >
-                                Show
-                              </div>
-                            </li>
-                            <li>
-                              <div
-                                onClick={() => handleEdit(item._id)}
-                                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                              >
-                                Edit
-                              </div>
-                            </li>
-                          </ul>
-                          <div className="py-1">
-                            <div
-                              onClick={() => handleDelete(item._id)}
-                              className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >
-                              Delete
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                  {dashboardData.recentBlogs.map((blog, index) => {
+                    return <BlogTableItem key={blog._id} blog={blog} fetchBlogs={fetchDashboardData} index={index} totalItems={dashboardData.recentBlogs.length} />;
+                  })}
                 </tbody>
               </table>
             </div>
