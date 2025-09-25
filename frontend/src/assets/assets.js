@@ -73,7 +73,7 @@ export const blog_data = [
         "createdAt": "2025-04-21T07:24:26.853Z",
         "updatedAt": "2025-04-24T08:20:36.187Z",
         "__v": 0,
-        "isPublished": true,
+        "isPublished": false,
         "subTitle": "Learning New Tech to Boost Your Software Career"
     },
     {
