@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogsList } from "../sections/Home/BlogsTab";
+import { BlogsTab } from "../sections/Home/BlogsTab";
 
 const BlogArchive = () => {
   return (
@@ -12,7 +12,7 @@ const BlogArchive = () => {
           </h1>{" "}
         </div>
       </div>
-      <BlogsList />
+      <BlogsTab />
     </>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { blog_data, blogCategories } from "../../assets/assets.js";
 import Card from "../../components/Card.jsx";
 
-export const BlogsList = () => {
+export const BlogsTab = () => {
   const [menu, setMenu] = useState("All");
 
   return (
