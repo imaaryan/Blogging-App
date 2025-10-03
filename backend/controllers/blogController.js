@@ -75,8 +75,11 @@ const getBlogByID = async (req, res) => {
 const deleteBlogByID = async (req, res) => {
   try {
     const { id } = req.body;
-    await Blog.findByIdAndDelete(id);
-    res.json({ success: false, message: "Blog Deleted Successfully" });
+    const deleteBlog = await Blog.findByIdAndDelete(id);
+    if (!deleteBlog) {
+      res.json({ success: false, message: "Blog Not Found" });
+    }
+    res.json({ success: true, message: "Blog Deleted Successfully" });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
@@ -88,7 +91,7 @@ const togglePublish = async (req, res) => {
     const blog = await Blog.findById(id);
     blog.isPublished = !blog.isPublished;
     await blog.save();
-    res.json({ success: false, message: "Blog Status Updated" });
+    res.json({ success: true, message: "Blog Status Updated" });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
