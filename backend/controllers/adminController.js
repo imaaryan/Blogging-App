@@ -8,13 +8,13 @@ const adminLogin = async (req, res) => {
       email !== process.env.ADMIN_EMAIL ||
       password !== process.env.ADMIN_PASSWORD
     ) {
-      return res.json({ success: false, message: "Invalid Credentails" });
+      return res.status(404).json({ success: false, message: "Invalid Credentails" });
     } else {
       const token = jwt.sign({ email }, process.env.SECRET_KEY);
-      res.json({ success: true, token });
+      res.status(200).json({ success: true, token });
     }
   } catch (error) {
-    res.json({ success: false, message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
